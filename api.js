@@ -1,3 +1,8 @@
+// A function whose only purpose is to delay execution
+// for the specified # of milliseconds when used w/ `await`
+// e.g. inside an async function:
+// await sleep(2000)  => pauses the function for 2 seconds before moving on
+
 import { initializeApp } from "firebase/app"
 import {
     getFirestore,
@@ -11,12 +16,12 @@ import {
 } from "firebase/firestore/lite"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyD_k3v3HK3tKEqhlqFHPkwogW7PqEqhGhk",
-    authDomain: "vanlife-a1af5.firebaseapp.com",
-    projectId: "vanlife-a1af5",
-    storageBucket: "vanlife-a1af5.appspot.com",
-    messagingSenderId: "803007000356",
-    appId: "1:803007000356:web:446cd3a1ca406839258db1"
+  apiKey: "AIzaSyD_k3v3HK3tKEqhlqFHPkwogW7PqEqhGhk",
+  authDomain: "vanlife-a1af5.firebaseapp.com",
+  projectId: "vanlife-a1af5",
+  storageBucket: "vanlife-a1af5.appspot.com",
+  messagingSenderId: "803007000356",
+  appId: "1:803007000356:web:446cd3a1ca406839258db1"
 };
 
 const app = initializeApp(firebaseConfig)
@@ -53,21 +58,6 @@ export async function getHostVans() {
     return vans
 }
 
-/* 
-This 👇 isn't normally something you'd need to do. Instead, you'd 
-set up Firebase security rules so only the currently logged-in user 
-could edit their vans.
-
-https://firebase.google.com/docs/rules
-
-I'm just leaving this here for educational purposes, as it took
-me a while to find the `documentId()` function that allows you
-to use a where() filter on a document's ID property. (Since normally
-it only looks at the data() properties of the document, meaning you
-can't do `where("id", "==", id))`
-
-It also shows how you can chain together multiple `where` filter calls
-*/
 
 // export async function getHostVan(id) {
 //     const q = query(
